@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "GpQy6JGIlZBG4Wrl9sCNxuKIkd3Bz6DY0J0QhbIHJQg=",
+  "Source": "Inveon.API",
+  "BasePath": "_content/Inveon.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
