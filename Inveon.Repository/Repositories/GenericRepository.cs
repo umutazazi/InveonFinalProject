@@ -23,7 +23,7 @@ namespace Inveon.Repository.Repositories
         {
             await _dbSet.AddAsync(entity);
         }
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(int id)
         {
             var entity = await GetByIdAsync(id);
             _dbSet.Remove(entity);
@@ -36,7 +36,7 @@ namespace Inveon.Repository.Repositories
         {
             return await _dbSet.ToListAsync();
         }
-        public async Task<Tentity> GetByIdAsync(Guid id)
+        public async Task<Tentity> GetByIdAsync(int id)
         {
             return await _dbSet.FindAsync(id);
         }

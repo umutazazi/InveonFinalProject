@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Inveon.Core\Inveon.Core.csproj" />
     <ProjectReference Include="..\Inveon.Service\Inveon.Service.csproj" />
   </ItemGroup>

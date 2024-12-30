@@ -12,7 +12,7 @@ namespace Inveon.Repository
     {
         
 
-        public async Task CommmitAsync()
+        public async Task CommitAsync()
         {
           await  appDbContext.SaveChangesAsync();
         }
