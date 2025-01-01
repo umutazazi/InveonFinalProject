@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Inveon.Core.Models;
 using Inveon.Core.Modelss;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -21,8 +22,10 @@ namespace Inveon.Repository
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-
             base.OnModelCreating(builder);
+
+       
+            
         }
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inveon.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241228223702_Initial")]
-    partial class Initial
+    [Migration("20241231000410_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
