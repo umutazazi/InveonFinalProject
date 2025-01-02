@@ -8,7 +8,7 @@ namespace Inveon.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : CustomBaseController
     {
         private IUserService _userService;
 
@@ -21,31 +21,31 @@ namespace Inveon.API.Controllers
         public async Task<IActionResult> GetUserWithDetails(int id)
         {
             var response = await _userService.GetUserWithDetails(id);
-            return Ok(response);
+            return ActionResultInstance(response);
         }
         [HttpPost]
         public async Task<IActionResult> CreateUser(AppUserCreateDto userCreateDto)
         {
             var response = await _userService.CreateUserAsync(userCreateDto);
-            return Ok(response);
+            return ActionResultInstance(response);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             var response = await _userService.DeleteUserAsync(id);
-            return Ok(response);
+            return ActionResultInstance(response);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, AppUserUpdateDto userUpdateDto)
         {
             var response = await _userService.UpdateUserAsync(id, userUpdateDto);
-            return Ok(response);
+            return ActionResultInstance(response);
         }
         [HttpGet("{userId}/courses")]
         public async Task<IActionResult> GetUserCourses(int userId)
         {
             var response = await _userService.GetUserCourses(userId);
-            return Ok(response);
+            return ActionResultInstance(response);
         }
 
     }

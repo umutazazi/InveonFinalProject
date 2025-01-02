@@ -203,6 +203,30 @@ namespace Inveon.Repository.Migrations
                     b.ToTable("Payments");
                 });
 
+            modelBuilder.Entity("Inveon.Core.Models.UserRefreshToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("Expiration")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserRefreshTokens");
+                });
+
             modelBuilder.Entity("Inveon.Core.Modelss.Order", b =>
                 {
                     b.Property<int>("Id")

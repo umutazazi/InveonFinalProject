@@ -43,7 +43,6 @@ namespace Inveon.Service.Services
             JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
                 issuer: _tokenOption.Issuer,
                 expires: accessTokenExpiration,
-              
                 claims: GetClaims(appUser,_tokenOption.Audience),
                 signingCredentials: signingCredentials);
 

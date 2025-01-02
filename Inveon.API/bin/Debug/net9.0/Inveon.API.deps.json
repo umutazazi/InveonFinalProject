@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v9.0": {
       "Inveon.API/1.0.0": {
         "dependencies": {
-          "Inveon.Core": "1.0.0",
           "Inveon.Service": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.0",
           "Microsoft.AspNetCore.OpenApi": "9.0.0-rc.2.24474.3",
@@ -1044,6 +1043,7 @@
       },
       "Inveon.Core/1.0.0": {
         "dependencies": {
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "9.0.0"
         },
         "runtime": {

@@ -8,7 +8,7 @@ namespace Inveon.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PaymentController : ControllerBase
+    public class PaymentController : CustomBaseController
     {
         private readonly IServiceGeneric<Payment, PaymentDto> _paymentService;
 
@@ -21,31 +21,31 @@ namespace Inveon.API.Controllers
         public async Task<IActionResult> GetAll()
         {
             var response = await _paymentService.GetAllAsync();
-            return Ok(response);
+            return ActionResultInstance(response);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var response = await _paymentService.GetByIdAsync(id);
-            return Ok(response);
+            return ActionResultInstance(response);
         }
         [HttpPost]
         public async Task<IActionResult> Add(PaymentDto paymentDto)
         {
             var response = await _paymentService.AddAsync(paymentDto);
-            return Ok(response);
+            return ActionResultInstance(response);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, PaymentDto paymentDto)
         {
             var response = await _paymentService.UpdateAsync(id, paymentDto);
-            return Ok(response);
+            return ActionResultInstance(response);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _paymentService.DeleteAsync(id);
-            return Ok(response);
+            return ActionResultInstance(response);
         }
 
 

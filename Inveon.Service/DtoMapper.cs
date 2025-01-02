@@ -20,6 +20,7 @@ namespace Inveon.Service
             CreateMap<CourseDto,Course>().ReverseMap();
             CreateMap<OrderDto, Order>().ReverseMap();
             CreateMap<PaymentDto, Payment>().ReverseMap();
+            CreateMap<AppUser, AppUserDetailsDto>();
 
         }
     }

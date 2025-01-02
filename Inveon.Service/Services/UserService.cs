@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Inveon.Service.Services
 {
-    internal class UserService : IUserService
+    public class UserService : IUserService
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IUnitOfWork _unitOfWork;
@@ -40,13 +40,21 @@ namespace Inveon.Service.Services
 
         public async Task<Response<AppUserDto>> CreateUserAsync(AppUserCreateDto userCreateDto)
         {
-          var user = new AppUser
+            var existingUser = await _userManager.FindByEmailAsync(userCreateDto.Email);
+            if (existingUser != null)
+            {
+               return Response<AppUserDto>.Fail(error:"Email is already in use",400);
+            }
+
+            var user = new AppUser
           {
               UserName = userCreateDto.UserName,
               Email = userCreateDto.Email,
               PasswordHash = userCreateDto.Password
           };
-            var result = await _userManager.CreateAsync(user, userCreateDto.Password);
+         
+
+          var result = await _userManager.CreateAsync(user, userCreateDto.Password);
             
             if(!result.Succeeded)
             {

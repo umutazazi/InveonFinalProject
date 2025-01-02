@@ -48,9 +48,9 @@ namespace Inveon.Service.Services
             }
             var token = _tokenService.CreateToken(user);
 
-            var userRefreshToken = await _userRefreshTokenService.FindAsync(u => u.UserId == user.Id);
+            var userRefreshToken = (await _userRefreshTokenService.FindAsync(u => u.UserId == user.Id)).FirstOrDefault();
 
-            if(userRefreshToken.IsNullOrEmpty())
+            if(userRefreshToken == null)
             {
                 await _userRefreshTokenService.AddAsync(new UserRefreshToken
                 {
@@ -61,8 +61,8 @@ namespace Inveon.Service.Services
             }
             else
             {
-                userRefreshToken.FirstOrDefault().Code = token.RefreshToken;
-                userRefreshToken.FirstOrDefault().Expiration = token.RefreshTokenExpiration;
+                userRefreshToken.Code = token.RefreshToken;
+                userRefreshToken.Expiration = token.RefreshTokenExpiration;
             }
             await _unitOfWork.CommitAsync();
             return Response<TokenDto>.Success(token,200);
@@ -74,7 +74,7 @@ namespace Inveon.Service.Services
         {
             var existRefreshToken = await _userRefreshTokenService.FindAsync(x => x.Code == refreshToken);
 
-            if (existRefreshToken.IsNullOrEmpty())
+            if (existRefreshToken == null)
             {
                 return Response<TokenDto>.Fail("Refresh token not found", 404);
             }
@@ -88,7 +88,7 @@ namespace Inveon.Service.Services
 
             var tokenDto = _tokenService.CreateToken(user);
 
-            existRefreshToken.FirstOrDefault().Code = tokenDto.RefreshToken);
+            existRefreshToken.FirstOrDefault().Code = tokenDto.RefreshToken;
             existRefreshToken.FirstOrDefault().Expiration = tokenDto.RefreshTokenExpiration;
 
             await _unitOfWork.CommitAsync();
@@ -99,7 +99,7 @@ namespace Inveon.Service.Services
         public async Task<Response<NoContent>> RevokeRefreshToken(string refreshToken)
         {
             var existRefreshToken = await _userRefreshTokenService.FindAsync(x => x.Code == refreshToken);
-            if (existRefreshToken.IsNullOrEmpty())
+            if (existRefreshToken == null)
             {
                 return Response<NoContent>.Fail("Refresh token not found", 404);
             }

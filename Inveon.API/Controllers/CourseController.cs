@@ -1,14 +1,17 @@
 ﻿using Inveon.Core.DTOs.Course;
 using Inveon.Core.Models;
 using Inveon.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inveon.API.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
-    public class CourseController : ControllerBase
+    public class CourseController : CustomBaseController
     {
         private readonly IServiceGeneric<Course, CourseDto> _courseService;
 
@@ -20,7 +23,7 @@ namespace Inveon.API.Controllers
         public async Task<IActionResult> GetAll()
         {
             var response = await _courseService.GetAllAsync();
-           return Ok(response);
+            return ActionResultInstance(response);
 
 
         }
@@ -30,7 +33,7 @@ namespace Inveon.API.Controllers
             var response = await _courseService.GetByIdAsync(id);
 
 
-            return Ok(response);
+            return ActionResultInstance(response);
 
 
         }
@@ -38,19 +41,19 @@ namespace Inveon.API.Controllers
         public async Task<IActionResult> Add(CourseDto courseDto)
         {
             var response = await _courseService.AddAsync(courseDto);
-            return Ok(response);
+            return ActionResultInstance(response);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, CourseDto courseDto)
         {
             var response = await _courseService.UpdateAsync(id, courseDto);
-            return Ok(response);
+            return ActionResultInstance(response);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _courseService.DeleteAsync(id);
-            return Ok(response);
+            return ActionResultInstance(response);
         }
     }
 }
