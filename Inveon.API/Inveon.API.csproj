@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Inveon.Core\Inveon.Core.csproj" />
     <ProjectReference Include="..\Inveon.Service\Inveon.Service.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,4 @@
-﻿using Inveon.Core.DTOs;
+﻿using Inveon.Core.DTOs.AppUser;
 using Inveon.Core.Models;
 using Inveon.Core.Services;
 using Microsoft.AspNetCore.Http;

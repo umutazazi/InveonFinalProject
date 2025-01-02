@@ -4718,7 +4718,6 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "Inveon.Core >= 1.0.0",
       "Inveon.Service >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 9.0.0",
       "Microsoft.AspNetCore.OpenApi >= 9.0.0-rc.2.24474.3",
@@ -4758,9 +4757,6 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\Umut\\Desktop\\Inveon API\\Inveon.Final.Project\\Inveon.Core\\Inveon.Core.csproj": {
-              "projectPath": "C:\\Users\\Umut\\Desktop\\Inveon API\\Inveon.Final.Project\\Inveon.Core\\Inveon.Core.csproj"
-            },
             "C:\\Users\\Umut\\Desktop\\Inveon API\\Inveon.Final.Project\\Inveon.Service\\Inveon.Service.csproj": {
               "projectPath": "C:\\Users\\Umut\\Desktop\\Inveon API\\Inveon.Final.Project\\Inveon.Service\\Inveon.Service.csproj"
             }

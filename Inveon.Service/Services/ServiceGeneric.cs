@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper.Internal.Mappers;
-using Inveon.Core.DTOs.Shared;
 using Inveon.Core.Repositories;
 using Inveon.Core.UnitOfWork;
 using Inveon.Repository.Repositories;
+using Inveon.Core.DTOs.Shared;
 
 namespace Inveon.Service.Services
 {

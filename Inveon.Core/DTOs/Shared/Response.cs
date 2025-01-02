@@ -13,11 +13,11 @@ namespace Inveon.Core.DTOs.Shared
         public bool IsSuccessful { get; set; }
         public List<string> Errors { get; set; }
 
-   
+
         public static Response<T> Success(T data, int statusCode = 200)
             => new Response<T> { Data = data, StatusCode = statusCode, IsSuccessful = true };
         public static Response<T> Success(int statusCode = 200)
-            => new Response<T> {StatusCode = statusCode, IsSuccessful = true };
+            => new Response<T> { StatusCode = statusCode, IsSuccessful = true };
 
         public static Response<T> Fail(List<string> errors, int statusCode = 400)
             => new Response<T> { Errors = errors, StatusCode = statusCode, IsSuccessful = false };

@@ -1,11 +1,12 @@
-﻿using Inveon.Core.DTOs.Shared;
-using Inveon.Core.DTOs;
-using Inveon.Core.Models;
+﻿using Inveon.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Inveon.Core.DTOs.Shared;
+using Inveon.Core.DTOs.AppUser;
+using Inveon.Core.DTOs.Course;
 
 namespace Inveon.Core.Services
 {

@@ -1,3 +1,4 @@
+using Inveon.Core.Configurations;
 using Inveon.Core.Models;
 using Inveon.Core.Repositories;
 using Inveon.Core.Services;
@@ -6,8 +7,10 @@ using Inveon.Repository;
 using Inveon.Repository.Repositories;
 using Inveon.Service;
 using Inveon.Service.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,9 +28,41 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
             x.MigrationsAssembly("Inveon.Repository"));
     });
 
-builder.Services.AddIdentity<AppUser, AppRole>()
+builder.Services.AddIdentity<AppUser, AppRole>(
+        opt =>
+        {
+            opt.Password.RequireDigit = true;
+            opt.Password.RequireLowercase = true;
+            opt.Password.RequireUppercase = true;
+            opt.Password.RequireNonAlphanumeric = true;
+            opt.Password.RequiredLength = 6;
+        })
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
+
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opts =>
+{
+    var tokenOptions = builder.Configuration.GetSection("TokenOption").Get<CustomTokenOption>();
+    opts.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+    {
+        ValidIssuer = tokenOptions.Issuer,
+        ValidAudience = tokenOptions.Audience[0],
+        IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokenOptions.SecurityKey),
+        ValidateIssuerSigningKey = true,
+        ValidateAudience = true,
+        ValidateIssuer = true,
+        ValidateLifetime = true,
+       
+    };
+});
+
 
 var app = builder.Build();
 

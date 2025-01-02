@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Inveon.Core.DTOs
+namespace Inveon.Core.DTOs.Course
 {
-    public record CourseCreateDto(
+    public record CourseDto(
+        int Id,
         string Name,
         string Description,
         decimal Price,
-        string Category
-    );
+        string Category);
+
 }

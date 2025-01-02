@@ -1,4 +1,4 @@
-﻿using Inveon.Core.DTOs;
+﻿using Inveon.Core.DTOs.Payment;
 using Inveon.Core.Models;
 using Inveon.Core.Services;
 using Microsoft.AspNetCore.Http;
