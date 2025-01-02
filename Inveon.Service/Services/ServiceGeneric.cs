@@ -9,6 +9,7 @@ using Inveon.Core.Repositories;
 using Inveon.Core.UnitOfWork;
 using Inveon.Repository.Repositories;
 using Inveon.Core.DTOs.Shared;
+using System.Linq.Expressions;
 
 namespace Inveon.Service.Services
 {
@@ -70,5 +71,12 @@ namespace Inveon.Service.Services
 
             return Response<NoContent>.Success(statusCode: 204);
         }
+
+        public async Task<Response<IEnumerable<TDto>>> Where(Expression<Func<TEntity, bool>> predicate)
+        {
+            var list = await genericRepository.FindAsync(predicate);
+            return Response<IEnumerable<TDto>>.Success(ObjectMapper.Mapper.Map<IEnumerable<TDto>>(list), 200);
+        }
     }
+
 }
