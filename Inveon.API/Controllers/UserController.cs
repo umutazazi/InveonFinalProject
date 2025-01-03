@@ -30,14 +30,14 @@ namespace Inveon.API.Controllers
             var response = await _userService.CreateUserAsync(userCreateDto);
             return ActionResultInstance(response);
         }
-        [Authorize(Roles = "Admin")]
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             var response = await _userService.DeleteUserAsync(id);
             return ActionResultInstance(response);
         }
-        [Authorize(Roles = "Admin")]
+       
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, AppUserUpdateDto userUpdateDto)
         {
