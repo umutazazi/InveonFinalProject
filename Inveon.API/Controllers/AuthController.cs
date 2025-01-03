@@ -2,11 +2,13 @@
 using Inveon.Core.DTOs.Shared;
 using Inveon.Core.DTOs.TokenDtos;
 using Inveon.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inveon.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class AuthController : CustomBaseController
@@ -17,6 +19,7 @@ namespace Inveon.API.Controllers
         {
             _authService = authService;
         }
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> CreateToken(LoginDto loginDto)
         {

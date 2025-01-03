@@ -1,11 +1,13 @@
 ﻿using Inveon.Core.DTOs.Payment;
 using Inveon.Core.Models;
 using Inveon.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inveon.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PaymentController : CustomBaseController

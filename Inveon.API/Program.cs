@@ -47,7 +47,19 @@ builder.Services.AddIdentity<AppUser, AppRole>(
 builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
 builder.Services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<CustomTokenOption>>().Value);
 
+builder.Services.AddCors(opt =>
+    {
+        opt.AddPolicy("AllowReactApp", builder =>
+            {
+                builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
+            }
+            );
 
+        
+            
+      
+    });
+    
 
 builder.Services.AddAuthentication(options =>
 {
@@ -77,7 +89,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
+app.UseCors("AllowReactApp");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 

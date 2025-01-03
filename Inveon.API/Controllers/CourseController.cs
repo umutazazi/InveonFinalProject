@@ -19,6 +19,7 @@ namespace Inveon.API.Controllers
         {
             _courseService = courseService;
         }
+       
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -27,6 +28,7 @@ namespace Inveon.API.Controllers
 
 
         }
+       
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -37,18 +39,21 @@ namespace Inveon.API.Controllers
 
 
         }
+        [Authorize(Roles = "instructor,admin")]
         [HttpPost]
         public async Task<IActionResult> Add(CourseDto courseDto)
         {
             var response = await _courseService.AddAsync(courseDto);
             return ActionResultInstance(response);
         }
+        [Authorize(Roles = "instructor,admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, CourseDto courseDto)
         {
             var response = await _courseService.UpdateAsync(id, courseDto);
             return ActionResultInstance(response);
         }
+        [Authorize(Roles = "instructor,admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
