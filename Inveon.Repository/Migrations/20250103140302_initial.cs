@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Inveon.Repository.Migrations
 {
     /// <inheritdoc />
@@ -268,6 +270,48 @@ namespace Inveon.Repository.Migrations
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { 1, "c9c4ee17-b22f-492e-b076-3c611062438a", "Admin", "ADMIN" },
+                    { 2, "ee2eadc7-2138-4e7f-a938-9c96241e668f", "User", "USER" },
+                    { 3, "58dc0d27-6f12-42d8-b008-a79d0b9b426d", "Instructor", "INSTRUCTOR" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { 1, 0, "f473ec9c-d04d-47dd-beb5-bd8564e8f369", "admin@example.com", true, false, null, "ADMIN@EXAMPLE.COM", "ADMIN@EXAMPLE.COM", "AQAAAAIAAYagAAAAELWtK16gmTVy7cngqRW+kXudqMMAryinzVV2HejeHE/p+txcEGFaLPQctSXoY3i/Og==", "+1234567890", true, "bbb58557-c13d-4e3d-b3b2-6c58a146021b", false, "adminexample" },
+                    { 2, 0, "e7b85026-586e-4d66-a46b-0e87ad2de708", "instructor@example.com", true, false, null, "INSTRUCTOR@EXAMPLE.COM", "INSTRUCTOR@EXAMPLE.COM", "AQAAAAIAAYagAAAAEJeldflCKwze/DLYzIX6YtrwfZe6Nomd35/1In+Mi7mNZo0VnNIyprio1nh+A/tVjg==", "+1234567891", true, "3aa72026-919b-4517-a947-d40e59b328cb", false, "instructorexample" },
+                    { 3, 0, "b335f724-c23b-466a-baa4-67e0dabf14a2", "user@example.com", true, false, null, "USER@EXAMPLE.COM", "USER@EXAMPLE.COM", "AQAAAAIAAYagAAAAEKWVuX92hvOZKl+yUSDu29rsYvbDUq3YgXWs0qJxXdW2cOVL7214rwudqbE5qttsgg==", "+1234567892", true, "fc143344-b3a9-4dd0-a692-54464d54dca0", false, "userexample" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Courses",
+                columns: new[] { "Id", "Category", "Description", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 1, "Web Development", "Learn web development from scratch. This comprehensive course covers HTML, CSS, JavaScript, React, Node.js, and more. Perfect for beginners who want to become full-stack developers.", "Complete Web Development Bootcamp", 199.99m },
+                    { 2, "Programming", "Master Python programming with this comprehensive course. Covers basic to advanced concepts including data structures, algorithms, OOP, and practical projects. Ideal for both beginners and intermediate programmers.", "Python Programming Masterclass", 149.99m },
+                    { 3, "Mobile Development", "Build cross-platform mobile applications using Flutter and Dart. Learn to create beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.", "Mobile App Development with Flutter", 179.99m },
+                    { 4, "Data Science", "Comprehensive course on data science and machine learning using Python. Learn data analysis, visualization, statistical modeling, and implement various machine learning algorithms through hands-on projects.", "Data Science and Machine Learning", 299.99m },
+                    { 5, "DevOps", "Master modern DevOps practices including CI/CD, container orchestration, cloud services, and infrastructure as code. Learn tools like Docker, Kubernetes, Jenkins, and AWS/Azure.", "DevOps Engineering Professional", 249.99m }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 3, 2 },
+                    { 2, 3 }
                 });
 
             migrationBuilder.CreateIndex(

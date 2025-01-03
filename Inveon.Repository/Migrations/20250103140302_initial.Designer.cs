@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inveon.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250102190326_initial")]
+    [Migration("20250103140302_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -68,6 +68,29 @@ namespace Inveon.Repository.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ConcurrencyStamp = "c9c4ee17-b22f-492e-b076-3c611062438a",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ConcurrencyStamp = "ee2eadc7-2138-4e7f-a938-9c96241e668f",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ConcurrencyStamp = "58dc0d27-6f12-42d8-b008-a79d0b9b426d",
+                            Name = "Instructor",
+                            NormalizedName = "INSTRUCTOR"
+                        });
                 });
 
             modelBuilder.Entity("Inveon.Core.Models.AppUser", b =>
@@ -136,6 +159,59 @@ namespace Inveon.Repository.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f473ec9c-d04d-47dd-beb5-bd8564e8f369",
+                            Email = "admin@example.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@EXAMPLE.COM",
+                            NormalizedUserName = "ADMIN@EXAMPLE.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAELWtK16gmTVy7cngqRW+kXudqMMAryinzVV2HejeHE/p+txcEGFaLPQctSXoY3i/Og==",
+                            PhoneNumber = "+1234567890",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "bbb58557-c13d-4e3d-b3b2-6c58a146021b",
+                            TwoFactorEnabled = false,
+                            UserName = "adminexample"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e7b85026-586e-4d66-a46b-0e87ad2de708",
+                            Email = "instructor@example.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "INSTRUCTOR@EXAMPLE.COM",
+                            NormalizedUserName = "INSTRUCTOR@EXAMPLE.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJeldflCKwze/DLYzIX6YtrwfZe6Nomd35/1In+Mi7mNZo0VnNIyprio1nh+A/tVjg==",
+                            PhoneNumber = "+1234567891",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "3aa72026-919b-4517-a947-d40e59b328cb",
+                            TwoFactorEnabled = false,
+                            UserName = "instructorexample"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b335f724-c23b-466a-baa4-67e0dabf14a2",
+                            Email = "user@example.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER@EXAMPLE.COM",
+                            NormalizedUserName = "USER@EXAMPLE.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKWVuX92hvOZKl+yUSDu29rsYvbDUq3YgXWs0qJxXdW2cOVL7214rwudqbE5qttsgg==",
+                            PhoneNumber = "+1234567892",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "fc143344-b3a9-4dd0-a692-54464d54dca0",
+                            TwoFactorEnabled = false,
+                            UserName = "userexample"
+                        });
                 });
 
             modelBuilder.Entity("Inveon.Core.Models.Course", b =>
@@ -168,6 +244,48 @@ namespace Inveon.Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Courses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Category = "Web Development",
+                            Description = "Learn web development from scratch. This comprehensive course covers HTML, CSS, JavaScript, React, Node.js, and more. Perfect for beginners who want to become full-stack developers.",
+                            Name = "Complete Web Development Bootcamp",
+                            Price = 199.99m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Category = "Programming",
+                            Description = "Master Python programming with this comprehensive course. Covers basic to advanced concepts including data structures, algorithms, OOP, and practical projects. Ideal for both beginners and intermediate programmers.",
+                            Name = "Python Programming Masterclass",
+                            Price = 149.99m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Category = "Mobile Development",
+                            Description = "Build cross-platform mobile applications using Flutter and Dart. Learn to create beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.",
+                            Name = "Mobile App Development with Flutter",
+                            Price = 179.99m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Category = "Data Science",
+                            Description = "Comprehensive course on data science and machine learning using Python. Learn data analysis, visualization, statistical modeling, and implement various machine learning algorithms through hands-on projects.",
+                            Name = "Data Science and Machine Learning",
+                            Price = 299.99m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Category = "DevOps",
+                            Description = "Master modern DevOps practices including CI/CD, container orchestration, cloud services, and infrastructure as code. Learn tools like Docker, Kubernetes, Jenkins, and AWS/Azure.",
+                            Name = "DevOps Engineering Professional",
+                            Price = 249.99m
+                        });
                 });
 
             modelBuilder.Entity("Inveon.Core.Models.Payment", b =>
@@ -341,6 +459,23 @@ namespace Inveon.Repository.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            RoleId = 2
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
