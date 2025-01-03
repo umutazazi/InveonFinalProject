@@ -4,6 +4,9 @@ using Inveon.Core.Models;
 using Inveon.Core.Modelss;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Inveon.Repository.Configurations.Seed;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Options;
 
 
 namespace Inveon.Repository
@@ -12,9 +15,9 @@ namespace Inveon.Repository
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-
+           
         }
-
+        
         public DbSet<Order> Orders { get; set; }
         public DbSet<Course> Courses{ get; set; }
         public DbSet<Payment> Payments { get; set; }
@@ -22,11 +25,22 @@ namespace Inveon.Repository
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
             base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+            builder.SeedUsers();
+            builder.SeedRoles();
+            builder.SeedUserRoles();
+            builder.SeedCourses();
+          
 
-       
-            
+
+
+
+
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
         }
     }
 }
