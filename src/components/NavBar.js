@@ -1,27 +1,10 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
 
 export default function NavBar() {
-  const [user, setUser] = useState(null);
-
-  const token = localStorage.getItem("accessToken");
+  const { user, logout } = useContext(AuthContext);
   const role = localStorage.getItem("role");
-
-  useEffect(() => {
-    if (token) {
-      setUser(true);
-    } else {
-      setUser(false);
-    }
-  }, [token]);
-
-  const handleLogout = () => {
-    setUser(false);
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("role");
-    localStorage.removeItem("refreshToken");
-  };
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary  sticky-top">
       <div className="container">
@@ -47,11 +30,13 @@ export default function NavBar() {
                 </li>
                 {role === "Instructor" && (
                   <li className="nav-item">
-                    <p>Add Course</p>
+                    <Link className="nav-link" to="/create-course">
+                      Create Course
+                    </Link>
                   </li>
                 )}
                 <li className="nav-item">
-                  <button className="btn btn-danger" onClick={handleLogout}>
+                  <button className="btn btn-danger" onClick={logout}>
                     Logout
                   </button>
                 </li>
