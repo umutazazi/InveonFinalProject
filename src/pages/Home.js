@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axiosInstance from "../services/axiosInstance";
+import axios from "axios";
 import CourseCard from "../components/CourseCard";
 import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
@@ -13,7 +13,7 @@ export default function Home() {
 
   useEffect(() => {
     try {
-      axiosInstance.get("/Course/").then((response) => {
+      axios.get("https://localhost:7003/api/Course/").then((response) => {
         setCourses(response.data.data);
       });
     } catch (error) {

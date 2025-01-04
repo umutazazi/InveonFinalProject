@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axiosInstance from "../services/axiosInstance";
+import axios from "axios";
 import alertify from "alertifyjs";
 import Spinner from "../components/Spinner";
 import { AuthContext } from "../context/authContext";
@@ -13,8 +13,8 @@ export default function CourseDetails() {
   const user = useContext(AuthContext);
 
   useEffect(() => {
-    axiosInstance
-      .get(`/Course/${id}`)
+    axios
+      .get(`https://localhost:7003/api/Course/${id}`)
       .then((response) => {
         setCourse(response.data.data);
       })
@@ -24,7 +24,7 @@ export default function CourseDetails() {
   }, [id]);
 
   const handlePurchase = () => {
-    if (user.user === false) {
+    if (user.user === null) {
       alertify.error("Please login to purchase the course!");
       navigate("/login");
     } else {

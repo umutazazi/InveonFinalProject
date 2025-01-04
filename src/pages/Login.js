@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, use } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import alertify from "alertifyjs";
@@ -44,18 +44,8 @@ export default function Login() {
           password,
         }
       );
-
       const { accessToken, refreshToken } = response.data.data;
-
-      const decodedToken = jwtDecode(accessToken);
-      const roles = decodedToken.roles;
-      console.log(roles);
-      localStorage.setItem("role", JSON.stringify(roles));
-
-      localStorage.setItem("refreshToken", refreshToken);
-      localStorage.setItem("accessToken", accessToken);
-
-      login(accessToken, roles);
+      login(accessToken, refreshToken);
       navigate("/");
     } catch (error) {
       console.error(error);
