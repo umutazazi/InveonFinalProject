@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../services/axiosInstance";
 import CourseCard from "../components/CourseCard";
 import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
+import Spinner from "../components/Spinner";
 
 export default function Home() {
   const [courses, setCourses] = useState([]);
@@ -13,7 +13,7 @@ export default function Home() {
 
   useEffect(() => {
     try {
-      axios.get("https://localhost:7003/api/Course/").then((response) => {
+      axiosInstance.get("/Course/").then((response) => {
         setCourses(response.data.data);
       });
     } catch (error) {
@@ -39,16 +39,22 @@ export default function Home() {
   return (
     <div className="container">
       <SearchBar setSearchTerm={setSearchTerm} />
-      <div className="row">
-        {currentCourses.map((course) => (
-          <CourseCard course={course} key={course.id} />
-        ))}
-      </div>
-      <Pagination
-        coursesPerPage={coursesPerPage}
-        totalCourses={filteredCourses.length}
-        paginate={paginate}
-      />
+      {courses.length === 0 ? (
+        <Spinner />
+      ) : (
+        <>
+          <div className="row">
+            {currentCourses.map((course) => (
+              <CourseCard course={course} key={course.id} />
+            ))}
+          </div>
+          <Pagination
+            coursesPerPage={coursesPerPage}
+            totalCourses={filteredCourses.length}
+            paginate={paginate}
+          />
+        </>
+      )}
     </div>
   );
 }

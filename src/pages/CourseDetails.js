@@ -1,36 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../services/axiosInstance";
 import alertify from "alertifyjs";
 import Spinner from "../components/Spinner";
+import { AuthContext } from "../context/authContext";
 
 export default function CourseDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [course, setCourse] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Replace with actual login state
+
+  const user = useContext(AuthContext);
 
   useEffect(() => {
-    axios
-      .get(`https://localhost:7003/api/Course/${id}`)
+    axiosInstance
+      .get(`/Course/${id}`)
       .then((response) => {
         setCourse(response.data.data);
       })
       .catch((error) => {
         console.log(error);
       });
-
-    // Check if user is logged in (replace with actual login check)
-    const userLoggedIn = false; // Replace with actual login check
-    setIsLoggedIn(userLoggedIn);
   }, [id]);
 
   const handlePurchase = () => {
-    if (!isLoggedIn) {
+    if (user.user === false) {
       alertify.error("Please login to purchase the course!");
       navigate("/login");
     } else {
-      // Handle purchase logic here
       alertify.success("Course purchased successfully!");
     }
   };
