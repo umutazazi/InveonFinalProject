@@ -5,8 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Inveon.Core.DTOs.AppUser;
 using Inveon.Core.DTOs.Course;
+using Inveon.Core.DTOs.Order;
 using Inveon.Core.DTOs.Shared;
 using Inveon.Core.Models;
+using Inveon.Core.Modelss;
+using Inveon.Core.Repositories;
 using Inveon.Core.Services;
 using Inveon.Core.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
@@ -17,12 +20,15 @@ namespace Inveon.Service.Services
     public class UserService : IUserService
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly IGenericRepository<Order> _orderRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public UserService(UserManager<AppUser> userManager, IUnitOfWork unitOfWork)
+        public UserService(UserManager<AppUser> userManager, IUnitOfWork unitOfWork, IGenericRepository<Order> orderRepository)
         {
             _userManager = userManager;
             _unitOfWork = unitOfWork;
+            _orderRepository = orderRepository;
+
 
         }
 
@@ -123,14 +129,30 @@ namespace Inveon.Service.Services
 
         }
 
-        public async  Task<Response<IEnumerable<CourseDto>>> GetUserCourses(int userId)
+        public async Task<Response<IEnumerable<CourseDto>>> GetUserCourses(int userId)
         {
             var user = await _userManager.FindByIdAsync(userId.ToString());
             if (user == null)
                 return Response<IEnumerable<CourseDto>>.Fail("User not found", 404);
 
-            var courses = ObjectMapper.Mapper.Map<IEnumerable<CourseDto>>(user.Courses);
-            return Response<IEnumerable<CourseDto>>.Success(courses, 200);
+            // Get all orders for the user
+            var orders = await _orderRepository.FindAsync(o => o.UserId == userId);
+           
+
+            // Extract unique courses from the orders
+            var courses = orders
+                .Select(o => o.Course)
+                .Distinct();
+            
+
+            // Map the courses to DTOs
+            var courseDtos = ObjectMapper.Mapper.Map<IEnumerable<CourseDto>>(courses);
+
+            return Response<IEnumerable<CourseDto>>.Success(courseDtos, 200);
+
+
+
+
         }
     }
 }

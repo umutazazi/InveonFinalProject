@@ -19,7 +19,7 @@ namespace Inveon.Repository.Configurations
             builder.Property(o => o.OrderDate)
                 .IsRequired();
 
-            // Configure one-to-one relationship with Payment
+            
             builder.HasOne(o => o.Payment)
                 .WithOne(p => p.Order)
                 .HasForeignKey<Payment>(p => p.OrderId)

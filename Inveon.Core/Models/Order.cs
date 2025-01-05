@@ -15,7 +15,7 @@ namespace Inveon.Core.Modelss
         public int CourseId { get; set; } = default!;
         public Course Course { get; set; } = default!;
         public Payment Payment { get; set; }
-        public int PaymentId { get; set; } 
+     
 
         public DateTime OrderDate { get; set; } = DateTime.UtcNow;
     }

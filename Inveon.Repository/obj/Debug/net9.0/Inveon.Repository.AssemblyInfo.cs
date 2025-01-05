@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Inveon.Repository")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd42178b0915c62772a218bdd7c8a851834273c8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b31e284d4f72215ab1c37779a3b33713c7025e35")]
 [assembly: System.Reflection.AssemblyProductAttribute("Inveon.Repository")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Inveon.Repository")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

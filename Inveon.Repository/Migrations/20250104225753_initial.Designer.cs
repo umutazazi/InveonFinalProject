@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inveon.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250103140302_initial")]
+    [Migration("20250104225753_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -73,21 +73,21 @@ namespace Inveon.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "c9c4ee17-b22f-492e-b076-3c611062438a",
+                            ConcurrencyStamp = "f160c943-31a4-4f84-b72f-9b2f30eaeeed",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "ee2eadc7-2138-4e7f-a938-9c96241e668f",
+                            ConcurrencyStamp = "799c2cbd-90bf-44a9-bad5-17631aa4c2af",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "58dc0d27-6f12-42d8-b008-a79d0b9b426d",
+                            ConcurrencyStamp = "cf40d062-194e-4953-bb10-ab68341d4768",
                             Name = "Instructor",
                             NormalizedName = "INSTRUCTOR"
                         });
@@ -165,16 +165,16 @@ namespace Inveon.Repository.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f473ec9c-d04d-47dd-beb5-bd8564e8f369",
+                            ConcurrencyStamp = "7e4dafea-0513-4947-86d3-b55339e25e8d",
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELWtK16gmTVy7cngqRW+kXudqMMAryinzVV2HejeHE/p+txcEGFaLPQctSXoY3i/Og==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEP9ViQXLYPt0mtmG4RDXtMyByXz3sGkeLeGV4EaZaVSyHgn2gDq0ERI2SGDBgug3jQ==",
                             PhoneNumber = "+1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "bbb58557-c13d-4e3d-b3b2-6c58a146021b",
+                            SecurityStamp = "6e841190-059e-4f4a-bd7b-6eb1344d4376",
                             TwoFactorEnabled = false,
                             UserName = "adminexample"
                         },
@@ -182,16 +182,16 @@ namespace Inveon.Repository.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e7b85026-586e-4d66-a46b-0e87ad2de708",
+                            ConcurrencyStamp = "98c44f02-db97-4e3d-85ad-c283cbabb5f6",
                             Email = "instructor@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "INSTRUCTOR@EXAMPLE.COM",
                             NormalizedUserName = "INSTRUCTOR@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJeldflCKwze/DLYzIX6YtrwfZe6Nomd35/1In+Mi7mNZo0VnNIyprio1nh+A/tVjg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENQ1USx3eqt3zwzPDouB+CtiH48ewtWS5tTMfScUyN49b3D5W1GZko7L8ldLvAVqQg==",
                             PhoneNumber = "+1234567891",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "3aa72026-919b-4517-a947-d40e59b328cb",
+                            SecurityStamp = "88323ba9-2a90-4d3d-adc1-8ae58a3953c6",
                             TwoFactorEnabled = false,
                             UserName = "instructorexample"
                         },
@@ -199,16 +199,16 @@ namespace Inveon.Repository.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b335f724-c23b-466a-baa4-67e0dabf14a2",
+                            ConcurrencyStamp = "cc5dc33d-1a80-47ae-9ba0-b00b6a310bc8",
                             Email = "user@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@EXAMPLE.COM",
                             NormalizedUserName = "USER@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKWVuX92hvOZKl+yUSDu29rsYvbDUq3YgXWs0qJxXdW2cOVL7214rwudqbE5qttsgg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOKEaY4iSAwGBhOHVkhedZE665DwIAXUVsOuULRs2+WvL0SxhA+AvGvWGGA5UqFfdw==",
                             PhoneNumber = "+1234567892",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "fc143344-b3a9-4dd0-a692-54464d54dca0",
+                            SecurityStamp = "5a39804a-fa69-4dae-b7dd-cb7113eb0c06",
                             TwoFactorEnabled = false,
                             UserName = "userexample"
                         });
@@ -361,9 +361,6 @@ namespace Inveon.Repository.Migrations
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("PaymentId")
-                        .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");

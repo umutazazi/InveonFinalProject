@@ -39,21 +39,21 @@ namespace Inveon.API.Controllers
 
 
         }
-        [Authorize(Roles = "instructor,admin")]
+        [Authorize(Roles = "Instructor,Admin")]
         [HttpPost]
         public async Task<IActionResult> Add(CourseDto courseDto)
         {
             var response = await _courseService.AddAsync(courseDto);
             return ActionResultInstance(response);
         }
-        [Authorize(Roles = "instructor,admin")]
+        [Authorize(Roles = "Instructor,Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, CourseDto courseDto)
         {
             var response = await _courseService.UpdateAsync(id, courseDto);
             return ActionResultInstance(response);
         }
-        [Authorize(Roles = "instructor,admin")]
+        [Authorize(Roles = "Instructor,Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

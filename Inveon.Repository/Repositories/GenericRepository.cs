@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Inveon.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Inveon.Repository.Repositories
 {
@@ -28,9 +29,16 @@ namespace Inveon.Repository.Repositories
             var entity = await GetByIdAsync(id);
             _dbSet.Remove(entity);
         }
-        public async Task<IEnumerable<Tentity>> FindAsync(Expression<Func<Tentity, bool>> predicate)
+        public async Task<IEnumerable<Tentity>> FindAsync(Expression<Func<Tentity, bool>> predicate, Func<IQueryable<Tentity>, IIncludableQueryable<Tentity, object>> include = null)
         {
-            return await _dbSet.Where(predicate).ToListAsync();
+            IQueryable<Tentity> query = _dbSet;
+
+            if (include != null)
+            {
+                query = include(query);
+            }
+
+            return await query.Where(predicate).ToListAsync();
         }
         public async Task<IEnumerable<Tentity>> GetAllAsync()
         {

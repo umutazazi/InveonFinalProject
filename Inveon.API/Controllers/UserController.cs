@@ -7,23 +7,29 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Inveon.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : CustomBaseController
     {
         private IUserService _userService;
+        
 
         public UserController(IUserService userService)
         {
             _userService = userService;
+          
+
         }
-        
+       
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserWithDetails(int id)
         {
             var response = await _userService.GetUserWithDetails(id);
             return ActionResultInstance(response);
         }
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> CreateUser(AppUserCreateDto userCreateDto)
         {

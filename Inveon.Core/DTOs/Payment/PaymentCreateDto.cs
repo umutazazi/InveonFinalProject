@@ -8,6 +8,7 @@ namespace Inveon.Core.DTOs.Payment
 {
     public record PaymentCreateDto(
         int OrderId,
+        int UserId,
         decimal Amount,
         string PaymentMethod
     );

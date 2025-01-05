@@ -206,6 +206,43 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Inveon.API.Controllers.OrderController",
+    "Method": "PurchaseCourse",
+    "RelativePath": "api/Order/{userId}/{courseId}/purchase",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "courseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Inveon.API.Controllers.OrderController",
+    "Method": "GetUserOrders",
+    "RelativePath": "api/Order/{userId}/purchases",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Inveon.API.Controllers.PaymentController",
     "Method": "GetAll",
     "RelativePath": "api/Payment",

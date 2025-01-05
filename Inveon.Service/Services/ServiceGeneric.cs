@@ -40,6 +40,7 @@ namespace Inveon.Service.Services
         {
             var newEntity = ObjectMapper.Mapper.Map<TEntity>(entity);
             await genericRepository.AddAsync(newEntity);
+
             await unitOfWork.CommitAsync();
             var newDto = ObjectMapper.Mapper.Map<TDto>(newEntity);
             return Response<TDto>.Success(ObjectMapper.Mapper.Map<TDto>(newDto), statusCode:200);

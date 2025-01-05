@@ -8,6 +8,7 @@ namespace Inveon.Core.DTOs.Order
 {
     public record OrderCreateDto(
         int CourseId
+        
         );
 
 }

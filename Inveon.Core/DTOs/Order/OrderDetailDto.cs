@@ -11,10 +11,10 @@ namespace Inveon.Core.DTOs.Order
 {
     public record OrderDetailDto(
         int Id,
-        CourseDto Course,
-        AppUserDto User,
-        PaymentDto Payment,
-        DateTime OrderDate
+        CourseDto Course = null,
+        AppUserDto? User = null,
+        PaymentDto? Payment = null,
+        DateTime OrderDate = default
     );
 
 }

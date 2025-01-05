@@ -12,6 +12,7 @@ namespace Inveon.Core.DTOs.AppUser
         int Id,
         string UserName,
         string Email,
+        string PhoneNumber,
         ICollection<OrderDto> Orders,
         ICollection<CourseDto> Courses);
 }

@@ -13,7 +13,7 @@ namespace Inveon.Core.DTOs.Order
         int CourseId,
         string CourseName,
         decimal CoursePrice,
-        DateTime OrderDate,
-        PaymentDto Payment
+        DateTime OrderDate
+       
     );
 }
