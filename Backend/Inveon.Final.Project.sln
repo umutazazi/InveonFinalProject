@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35507.96
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inveon.API", "Inveon.API\Inveon.API.csproj", "{ABFA3B93-6F06-4F6C-92D6-FF71FEB569E9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FF7060B4-C928-4AC2-A058-47EF81F362DB} = {FF7060B4-C928-4AC2-A058-47EF81F362DB}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inveon.Repository", "Inveon.Repository\Inveon.Repository.csproj", "{4D42BECA-6256-4899-83B8-26B220763A30}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FF7060B4-C928-4AC2-A058-47EF81F362DB} = {FF7060B4-C928-4AC2-A058-47EF81F362DB}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inveon.Service", "Inveon.Service\Inveon.Service.csproj", "{2074FBCC-6FC3-42F6-BB1A-CB3FE8586F62}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FF7060B4-C928-4AC2-A058-47EF81F362DB} = {FF7060B4-C928-4AC2-A058-47EF81F362DB}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inveon.Core", "Inveon.Core\Inveon.Core.csproj", "{FF7060B4-C928-4AC2-A058-47EF81F362DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABFA3B93-6F06-4F6C-92D6-FF71FEB569E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABFA3B93-6F06-4F6C-92D6-FF71FEB569E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABFA3B93-6F06-4F6C-92D6-FF71FEB569E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABFA3B93-6F06-4F6C-92D6-FF71FEB569E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D42BECA-6256-4899-83B8-26B220763A30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D42BECA-6256-4899-83B8-26B220763A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D42BECA-6256-4899-83B8-26B220763A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D42BECA-6256-4899-83B8-26B220763A30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2074FBCC-6FC3-42F6-BB1A-CB3FE8586F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2074FBCC-6FC3-42F6-BB1A-CB3FE8586F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2074FBCC-6FC3-42F6-BB1A-CB3FE8586F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2074FBCC-6FC3-42F6-BB1A-CB3FE8586F62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF7060B4-C928-4AC2-A058-47EF81F362DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF7060B4-C928-4AC2-A058-47EF81F362DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF7060B4-C928-4AC2-A058-47EF81F362DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF7060B4-C928-4AC2-A058-47EF81F362DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0816AD2F-A79C-4998-96BC-98761A127FFC}
+	EndGlobalSection
+EndGlobal

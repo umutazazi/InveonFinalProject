@@ -1,0 +1,13 @@
+C:\Users\Umut\Desktop\Inveon API\Inveon.Final.Project\Inveon.Core\bin\Debug\net9.0\Inveon.Core.deps.json
+C:\Users\Umut\Desktop\Inveon API\Inveon.Final.Project\Inveon.Core\bin\Debug\net9.0\Inveon.Core.dll
+C:\Users\Umut\Desktop\Inveon API\Inveon.Final.Project\Inveon.Core\bin\Debug\net9.0\Inveon.Core.pdb
+C:\Users\Umut\Desktop\Inveon API\Inveon.Final.Project\Inveon.Core\obj\Debug\net9.0\Inveon.Core.csproj.AssemblyReference.cache
+C:\Users\Umut\Desktop\Inveon API\Inveon.Final.Project\Inveon.Core\obj\Debug\net9.0\Inveon.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Umut\Desktop\Inveon API\Inveon.Final.Project\Inveon.Core\obj\Debug\net9.0\Inveon.Core.AssemblyInfoInputs.cache
+C:\Users\Umut\Desktop\Inveon API\Inveon.Final.Project\Inveon.Core\obj\Debug\net9.0\Inveon.Core.AssemblyInfo.cs
+C:\Users\Umut\Desktop\Inveon API\Inveon.Final.Project\Inveon.Core\obj\Debug\net9.0\Inveon.Core.csproj.CoreCompileInputs.cache
+C:\Users\Umut\Desktop\Inveon API\Inveon.Final.Project\Inveon.Core\obj\Debug\net9.0\Inveon.Core.sourcelink.json
+C:\Users\Umut\Desktop\Inveon API\Inveon.Final.Project\Inveon.Core\obj\Debug\net9.0\Inveon.Core.dll
+C:\Users\Umut\Desktop\Inveon API\Inveon.Final.Project\Inveon.Core\obj\Debug\net9.0\refint\Inveon.Core.dll
+C:\Users\Umut\Desktop\Inveon API\Inveon.Final.Project\Inveon.Core\obj\Debug\net9.0\Inveon.Core.pdb
+C:\Users\Umut\Desktop\Inveon API\Inveon.Final.Project\Inveon.Core\obj\Debug\net9.0\ref\Inveon.Core.dll
