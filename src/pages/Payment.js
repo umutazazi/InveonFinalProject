@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/cartContext";
 import axiosInstance from "../services/axiosInstance";
 import alertify from "alertifyjs";
+import { createOrder, createPayment } from "../services/api";
 
 const Payment = () => {
   const { cart, clearCart } = useContext(CartContext);
@@ -18,33 +19,28 @@ const Payment = () => {
 
     try {
       const courseId = cart[0]?.id;
-      const orderResponse = await axiosInstance.post(
-        `/Order/${userId}/${courseId}/purchase`
+      const orderResponse = await createOrder(userId, courseId);
+      console.log("orderResponse", orderResponse);
+      if (!orderResponse.isSuccessful) {
+        throw new Error("Sipariş oluşturulamadı");
+      }
+
+      const paymentResponse = await createPayment(
+        userId,
+        orderResponse.data.id,
+        cart[0].price
       );
 
-      if (!(orderResponse.status === 200)) {
-        alertify.error("Sipariş oluşturulurken bir hata oluştu");
-        return;
+      if (!paymentResponse.isSuccessful) {
+        throw new Error("Ödeme işlemi başarısız oldu");
       }
-      const payment = {
-        userId: parseInt(userId),
-        orderId: orderResponse.data.data.id,
-        amount: cart[0].price,
-        paymentMethod: "Credit Card",
-        paymentDate: new Date().toISOString(),
-      };
-      const paymentResponse = await axiosInstance.post("/Payment/", payment);
 
-      if (paymentResponse.status === 200) {
-        clearCart();
-        alertify.success("Siparişiniz başarılı bir şekilde tamamlandı");
-        navigate("/");
-      } else {
-        alertify.error("Ödeme işlemi başarısız oldu");
-      }
+      clearCart();
+      alertify.success("Siparişiniz başarılı bir şekilde tamamlandı");
+      navigate("/");
     } catch (error) {
       console.error("Payment error:", error);
-      alertify.error("Ödeme işlemi sırasında bir hata oluştu");
+      alertify.error(error.message || "Ödeme işlemi sırasında bir hata oluştu");
     }
   };
   const totalAmount = cart.reduce((total, item) => total + item.price, 0);

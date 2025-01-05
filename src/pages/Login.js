@@ -4,6 +4,7 @@ import axios from "axios";
 import alertify from "alertifyjs";
 import { jwtDecode } from "jwt-decode";
 import { AuthContext } from "../context/authContext";
+import { loginWithToken } from "../services/api";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -37,18 +38,14 @@ export default function Login() {
     }
 
     try {
-      const response = await axios.post(
-        "https://localhost:7003/api/Auth/CreateToken",
-        {
-          email,
-          password,
-        }
-      );
-      const { accessToken, refreshToken } = response.data.data;
+      const response = await loginWithToken(email, password);
+      const { accessToken, refreshToken } = response.data;
+
       login(accessToken, refreshToken);
+      alertify.success("Login successful");
       navigate("/");
     } catch (error) {
-      console.error(error);
+      console.error("Login failed:", error);
       alertify.error("Email or password is incorrect");
     }
   };

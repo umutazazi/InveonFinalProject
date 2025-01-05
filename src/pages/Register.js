@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import alertify from "alertifyjs";
+import { registerUser } from "../services/api";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -41,11 +42,7 @@ export default function Register() {
     }
 
     try {
-      await axios.post("https://localhost:7003/api/User/", {
-        username,
-        email,
-        password,
-      });
+      await registerUser(username, email, password);
 
       alertify.success("Registration successful");
       navigate("/login");
