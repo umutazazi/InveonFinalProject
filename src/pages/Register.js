@@ -41,7 +41,7 @@ export default function Register() {
     }
 
     try {
-      await axios.post("https://localhost:7003/api/Auth/Register", {
+      await axios.post("https://localhost:7003/api/User/", {
         username,
         email,
         password,

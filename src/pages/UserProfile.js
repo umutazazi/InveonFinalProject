@@ -1,6 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, use } from "react";
 import axiosInstance from "../services/axiosInstance";
 import alertify from "alertifyjs";
+import CourseCard from "../components/CourseCard";
+import { set } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 export default function UserProfile() {
   const [email, setEmail] = useState("");
@@ -8,8 +11,19 @@ export default function UserProfile() {
   const [current, setCurrent] = useState("item1");
   const [password, setPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
+  const [courses, setCourses] = useState([]);
 
   const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    try {
+      axiosInstance.get(`/Order/${userId}/purchases`).then((res) => {
+        setCourses(res.data.data);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }, [current]);
 
   useEffect(() => {
     try {
@@ -149,15 +163,66 @@ export default function UserProfile() {
               </div>
             )}
             {current === "item2" && (
-              <div>
-                <h2>My Courses</h2>
-                <p>Details about the user's courses.</p>
+              <div className="container-fluid">
+                <h2 className="text-center mb-4">My Courses</h2>
+                <div className="row">
+                  {courses.map((course) => (
+                    <div key={course.id} className="col-md-6 mb-4">
+                      <div className="card h-100">
+                        <img
+                          src={
+                            course.imageUrl ||
+                            "https://via.placeholder.com/300x200"
+                          }
+                          className="card-img-top"
+                          alt={course.name}
+                          style={{ height: "200px", objectFit: "cover" }}
+                        />
+                        <div className="card-body">
+                          <h5 className="card-title">{course.courseName}</h5>
+                          <p className="card-text">
+                            <small className="text-muted">
+                              Price: ${course.coursePrice}
+                            </small>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
+
             {current === "item3" && (
               <div>
-                <h2>Order History</h2>
-                <p>Details about the user's order history.</p>
+                <h2 className="text-center">Order History</h2>
+                <div className="table-responsive"></div>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Course Name</th>
+                      <th>Date</th>
+                      <th>Price</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {courses.map((order) => (
+                      <tr key={order.id}>
+                        <td>{order.id}</td>
+                        <td>{order.courseName}</td>
+                        <td>
+                          {new Date(order.orderDate).toLocaleDateString()}
+                        </td>
+                        <td>${order.coursePrice}</td>
+                        <td>
+                          <span className="badge bg-success">Completed</span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             )}
           </div>

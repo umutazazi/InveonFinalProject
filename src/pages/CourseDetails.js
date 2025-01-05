@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import axiosInstance from "../services/axiosInstance";
 import alertify from "alertifyjs";
 import Spinner from "../components/Spinner";
 import { AuthContext } from "../context/authContext";
+import { CartContext } from "../context/cartContext";
 
 export default function CourseDetails() {
   const { id } = useParams();
@@ -11,6 +13,9 @@ export default function CourseDetails() {
   const [course, setCourse] = useState(null);
 
   const user = useContext(AuthContext);
+  const { addToCart } = useContext(CartContext);
+
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     axios
@@ -23,12 +28,15 @@ export default function CourseDetails() {
       });
   }, [id]);
 
-  const handlePurchase = () => {
+  const handlePurchase = async () => {
     if (user.user === null) {
-      alertify.error("Please login to purchase the course!");
+      alertify.error("Please login to add to cart the course!");
       navigate("/login");
     } else {
-      alertify.success("Course purchased successfully!");
+      if (course) {
+        addToCart(course);
+        alertify.success("Course added to cart!");
+      }
     }
   };
 

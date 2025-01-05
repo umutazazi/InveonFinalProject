@@ -1,25 +1,16 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect, useContext } from "react";
+import { CourseContext } from "../context/courseContext";
 import CourseCard from "../components/CourseCard";
 import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
 import Spinner from "../components/Spinner";
 
 export default function Home() {
-  const [courses, setCourses] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [coursesPerPage] = useState(5); // Number of courses per page
 
-  useEffect(() => {
-    try {
-      axios.get("https://localhost:7003/api/Course/").then((response) => {
-        setCourses(response.data.data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  const { courses } = useContext(CourseContext);
 
   const filteredCourses = courses.filter((course) =>
     course.name.toLowerCase().includes(searchTerm.toLowerCase())

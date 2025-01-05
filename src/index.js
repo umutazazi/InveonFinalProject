@@ -7,14 +7,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "alertifyjs/build/css/alertify.min.css";
 import NavBar from "./components/NavBar";
 import { AuthProvider } from "./context/authContext";
+import { CourseProvider } from "./context/courseContext";
+import { CartProvider } from "./context/cartContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <NavBar />
-        <App />
+        <CourseProvider>
+          <CartProvider>
+            <NavBar />
+            <App />
+          </CartProvider>
+        </CourseProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>

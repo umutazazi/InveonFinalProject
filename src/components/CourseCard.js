@@ -11,7 +11,7 @@ export default function CourseCard({ course }) {
             alt={course.name}
             className="img-fluid mb-3"
           />
-          <p className="card-title width-bold">{course.name}</p>
+          <h3 className="card-title ">{course.name}</h3>
           <p className="card-text">{course.description}</p>
           <p className="card-text">Price: ${course.price}</p>
           <Link to={`/courses/${course.id}`} className="btn btn-primary">
