@@ -11,9 +11,101 @@ const Payment = () => {
   const [expiryDate, setExpiryDate] = useState("");
   const [cvv, setCvv] = useState("");
   const navigate = useNavigate();
+  const [cardNumberError, setCardNumberError] = useState("");
+  const [expiryDateError, setExpiryDateError] = useState("");
+  const [cvvError, setCvvError] = useState("");
 
   const userId = localStorage.getItem("userId");
 
+  const validateExpiryDate = (date) => {
+    if (!date) return "Expiry date is required";
+
+    const [month, year] = date.split("/");
+    const currentYear = new Date().getFullYear() % 100;
+    const currentMonth = new Date().getMonth() + 1;
+
+    if (!/^\d{2}\/\d{2}$/.test(date)) {
+      return "Invalid format (MM/YY)";
+    }
+
+    const numMonth = parseInt(month);
+    const numYear = parseInt(year);
+
+    if (numMonth < 1 || numMonth > 12) {
+      return "Invalid month";
+    }
+
+    if (
+      numYear < currentYear ||
+      (numYear === currentYear && numMonth < currentMonth)
+    ) {
+      return "Card has expired";
+    }
+
+    return "";
+  };
+
+  const validateCVV = (cvv) => {
+    if (!/^\d{3}$/.test(cvv)) {
+      return "CVV must be 3 digits";
+    }
+    return "";
+  };
+
+  const handleExpiryDateChange = (e) => {
+    let value = e.target.value.replace(/[^\d]/g, "");
+    if (value.length > 2) {
+      value = value.slice(0, 2) + "/" + value.slice(2, 4);
+    }
+    setExpiryDate(value);
+    setExpiryDateError(validateExpiryDate(value));
+  };
+
+  const handleCVVChange = (e) => {
+    const value = e.target.value.replace(/[^\d]/g, "").slice(0, 3);
+    setCvv(value);
+    setCvvError(validateCVV(value));
+  };
+  const validateCreditCard = (number) => {
+    const regex = /^[0-9]{16}$/;
+    if (!regex.test(number.replace(/\s/g, ""))) {
+      return "Card number must be 16 digits";
+    }
+
+    // Luhn Algorithm
+    let sum = 0;
+    let isEven = false;
+    const digits = number.replace(/\s/g, "").split("").reverse();
+
+    for (let digit of digits) {
+      let num = parseInt(digit);
+      if (isEven) {
+        num *= 2;
+        if (num > 9) {
+          num -= 9;
+        }
+      }
+      sum += num;
+      isEven = !isEven;
+    }
+
+    return sum % 10 === 0 ? "" : "Invalid card number";
+  };
+  const formatCardNumber = (number) => {
+    const cleaned = number.replace(/\s/g, "");
+    const groups = cleaned.match(/.{1,4}/g);
+    return groups ? groups.join(" ") : cleaned;
+  };
+
+  const handleCardNumberChange = (e) => {
+    let value = e.target.value.replace(/[^\d\s]/g, "");
+    value = formatCardNumber(value);
+
+    if (value.replace(/\s/g, "").length <= 16) {
+      setCardNumber(value);
+      setCardNumberError(validateCreditCard(value));
+    }
+  };
   const handlePayment = async (e) => {
     e.preventDefault();
 
@@ -59,36 +151,42 @@ const Payment = () => {
       </div>
 
       <form onSubmit={handlePayment}>
-        <div className="mb-3">
-          <label htmlFor="cardNumber" className="form-label">
-            Kart Numarası
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="cardNumber"
-            value={cardNumber}
-            onChange={(e) => setCardNumber(e.target.value)}
-            maxLength="16"
-            placeholder="1234 5678 9012 3456"
-            required
-          />
-        </div>
         <div className="row mb-3">
+          <div className="mb-3">
+            <label htmlFor="cardNumber" className="form-label">
+              Kart Numarası
+            </label>
+            <input
+              type="text"
+              className={`form-control ${cardNumberError ? "is-invalid" : ""}`}
+              id="cardNumber"
+              value={cardNumber}
+              onChange={handleCardNumberChange}
+              placeholder="1234 5678 9012 3456"
+              maxLength="19"
+              required
+            />
+            {cardNumberError && (
+              <div className="invalid-feedback">{cardNumberError}</div>
+            )}
+          </div>
           <div className="col-md-6">
             <label htmlFor="expiryDate" className="form-label">
               Son Kullanma Tarihi
             </label>
             <input
               type="text"
-              className="form-control"
+              className={`form-control ${expiryDateError ? "is-invalid" : ""}`}
               id="expiryDate"
               value={expiryDate}
-              onChange={(e) => setExpiryDate(e.target.value)}
+              onChange={handleExpiryDateChange}
               placeholder="MM/YY"
               maxLength="5"
               required
             />
+            {expiryDateError && (
+              <div className="invalid-feedback">{expiryDateError}</div>
+            )}
           </div>
           <div className="col-md-6">
             <label htmlFor="cvv" className="form-label">
@@ -96,14 +194,15 @@ const Payment = () => {
             </label>
             <input
               type="text"
-              className="form-control"
+              className={`form-control ${cvvError ? "is-invalid" : ""}`}
               id="cvv"
               value={cvv}
-              onChange={(e) => setCvv(e.target.value)}
-              maxLength="3"
+              onChange={handleCVVChange}
               placeholder="123"
+              maxLength="3"
               required
             />
+            {cvvError && <div className="invalid-feedback">{cvvError}</div>}
           </div>
         </div>
         <button
