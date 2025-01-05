@@ -8,6 +8,7 @@ import UserProfile from "./pages/UserProfile";
 import Cart from "./pages/Cart";
 import Payment from "./pages/Payment";
 import Instructor from "./pages/Instructor";
+import PrivateRoute from "./pages/PrivateRoute";
 
 function App() {
   return (
