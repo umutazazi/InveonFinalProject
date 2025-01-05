@@ -24,13 +24,13 @@ namespace Inveon.Repository.Migrations
 
             modelBuilder.Entity("AppUserCourse", b =>
                 {
-                    b.Property<int>("CoursesId")
+                    b.Property<int>("EnrolledCoursesId")
                         .HasColumnType("int");
 
                     b.Property<int>("UsersId")
                         .HasColumnType("int");
 
-                    b.HasKey("CoursesId", "UsersId");
+                    b.HasKey("EnrolledCoursesId", "UsersId");
 
                     b.HasIndex("UsersId");
 
@@ -70,21 +70,21 @@ namespace Inveon.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "f160c943-31a4-4f84-b72f-9b2f30eaeeed",
+                            ConcurrencyStamp = "0df6a343-5a44-4718-8f96-cb165421b30f",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "799c2cbd-90bf-44a9-bad5-17631aa4c2af",
+                            ConcurrencyStamp = "3b3d237d-556f-468e-bc40-308709e8e147",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "cf40d062-194e-4953-bb10-ab68341d4768",
+                            ConcurrencyStamp = "2aa357fc-42cd-44dc-8b45-014b5d64a0db",
                             Name = "Instructor",
                             NormalizedName = "INSTRUCTOR"
                         });
@@ -162,16 +162,16 @@ namespace Inveon.Repository.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7e4dafea-0513-4947-86d3-b55339e25e8d",
+                            ConcurrencyStamp = "fb22f1b7-58c5-423c-9df4-81fbe37cabfa",
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEP9ViQXLYPt0mtmG4RDXtMyByXz3sGkeLeGV4EaZaVSyHgn2gDq0ERI2SGDBgug3jQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBNkFvNNuVr3tFJYP++qSCMK+/s/Lwem5/jCXIIwOpkBBfLpMsVtAnx4xhljMsBhLw==",
                             PhoneNumber = "+1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "6e841190-059e-4f4a-bd7b-6eb1344d4376",
+                            SecurityStamp = "61a043ce-4612-4a3a-be3b-723bb7177b48",
                             TwoFactorEnabled = false,
                             UserName = "adminexample"
                         },
@@ -179,16 +179,16 @@ namespace Inveon.Repository.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "98c44f02-db97-4e3d-85ad-c283cbabb5f6",
+                            ConcurrencyStamp = "b591527f-bf1a-40b9-b85d-a676c19702d0",
                             Email = "instructor@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "INSTRUCTOR@EXAMPLE.COM",
                             NormalizedUserName = "INSTRUCTOR@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENQ1USx3eqt3zwzPDouB+CtiH48ewtWS5tTMfScUyN49b3D5W1GZko7L8ldLvAVqQg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAED/45OvnCeuQ8ZRSNGR3SJqUagV6xLrerz7417sOx0IBzutyyEJIaPu0TmReh1N/Qw==",
                             PhoneNumber = "+1234567891",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "88323ba9-2a90-4d3d-adc1-8ae58a3953c6",
+                            SecurityStamp = "3eef17eb-bc24-44de-8826-e312528b0d28",
                             TwoFactorEnabled = false,
                             UserName = "instructorexample"
                         },
@@ -196,16 +196,16 @@ namespace Inveon.Repository.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cc5dc33d-1a80-47ae-9ba0-b00b6a310bc8",
+                            ConcurrencyStamp = "d13c9783-0a84-4ade-af23-e7fa4e527ae6",
                             Email = "user@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@EXAMPLE.COM",
                             NormalizedUserName = "USER@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOKEaY4iSAwGBhOHVkhedZE665DwIAXUVsOuULRs2+WvL0SxhA+AvGvWGGA5UqFfdw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOvxUAMGsGt1gQV7cvO2STheTpe6AsjhjSXVPsm0vCpS7kTjkxQGatTcOzaKUIY7RA==",
                             PhoneNumber = "+1234567892",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "5a39804a-fa69-4dae-b7dd-cb7113eb0c06",
+                            SecurityStamp = "eab66a86-0044-42b3-81fc-6f84061a1e0e",
                             TwoFactorEnabled = false,
                             UserName = "userexample"
                         });
@@ -229,6 +229,13 @@ namespace Inveon.Repository.Migrations
                         .HasMaxLength(2000)
                         .HasColumnType("nvarchar(2000)");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("InstructorId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -240,6 +247,8 @@ namespace Inveon.Repository.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("InstructorId");
+
                     b.ToTable("Courses");
 
                     b.HasData(
@@ -248,6 +257,8 @@ namespace Inveon.Repository.Migrations
                             Id = 1,
                             Category = "Web Development",
                             Description = "Learn web development from scratch. This comprehensive course covers HTML, CSS, JavaScript, React, Node.js, and more. Perfect for beginners who want to become full-stack developers.",
+                            ImageUrl = "https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course",
+                            InstructorId = 2,
                             Name = "Complete Web Development Bootcamp",
                             Price = 199.99m
                         },
@@ -256,6 +267,8 @@ namespace Inveon.Repository.Migrations
                             Id = 2,
                             Category = "Programming",
                             Description = "Master Python programming with this comprehensive course. Covers basic to advanced concepts including data structures, algorithms, OOP, and practical projects. Ideal for both beginners and intermediate programmers.",
+                            ImageUrl = "https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course",
+                            InstructorId = 2,
                             Name = "Python Programming Masterclass",
                             Price = 149.99m
                         },
@@ -264,6 +277,8 @@ namespace Inveon.Repository.Migrations
                             Id = 3,
                             Category = "Mobile Development",
                             Description = "Build cross-platform mobile applications using Flutter and Dart. Learn to create beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.",
+                            ImageUrl = "https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course",
+                            InstructorId = 2,
                             Name = "Mobile App Development with Flutter",
                             Price = 179.99m
                         },
@@ -272,6 +287,8 @@ namespace Inveon.Repository.Migrations
                             Id = 4,
                             Category = "Data Science",
                             Description = "Comprehensive course on data science and machine learning using Python. Learn data analysis, visualization, statistical modeling, and implement various machine learning algorithms through hands-on projects.",
+                            ImageUrl = "https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course",
+                            InstructorId = 2,
                             Name = "Data Science and Machine Learning",
                             Price = 299.99m
                         },
@@ -280,6 +297,8 @@ namespace Inveon.Repository.Migrations
                             Id = 5,
                             Category = "DevOps",
                             Description = "Master modern DevOps practices including CI/CD, container orchestration, cloud services, and infrastructure as code. Learn tools like Docker, Kubernetes, Jenkins, and AWS/Azure.",
+                            ImageUrl = "https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course",
+                            InstructorId = 2,
                             Name = "DevOps Engineering Professional",
                             Price = 249.99m
                         });
@@ -353,7 +372,7 @@ namespace Inveon.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CourseId")
+                    b.Property<int?>("CourseId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("OrderDate")
@@ -495,7 +514,7 @@ namespace Inveon.Repository.Migrations
                 {
                     b.HasOne("Inveon.Core.Models.Course", null)
                         .WithMany()
-                        .HasForeignKey("CoursesId")
+                        .HasForeignKey("EnrolledCoursesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -504,6 +523,17 @@ namespace Inveon.Repository.Migrations
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Inveon.Core.Models.Course", b =>
+                {
+                    b.HasOne("Inveon.Core.Models.AppUser", "Instructor")
+                        .WithMany("Courses")
+                        .HasForeignKey("InstructorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Instructor");
                 });
 
             modelBuilder.Entity("Inveon.Core.Models.Payment", b =>
@@ -530,8 +560,7 @@ namespace Inveon.Repository.Migrations
                     b.HasOne("Inveon.Core.Models.Course", "Course")
                         .WithMany("Orders")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Inveon.Core.Models.AppUser", "AppUser")
                         .WithMany("Orders")
@@ -597,6 +626,8 @@ namespace Inveon.Repository.Migrations
 
             modelBuilder.Entity("Inveon.Core.Models.AppUser", b =>
                 {
+                    b.Navigation("Courses");
+
                     b.Navigation("Orders");
 
                     b.Navigation("Payments");

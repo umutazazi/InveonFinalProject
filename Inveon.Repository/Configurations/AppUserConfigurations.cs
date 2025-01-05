@@ -25,7 +25,7 @@ namespace Inveon.Repository.Configurations
                 .OnDelete(DeleteBehavior.Restrict); // Changed to Restrict
 
             // Configure many-to-many relationship with Courses
-            builder.HasMany(u => u.Courses)
+            builder.HasMany(u => u.EnrolledCourses)
                 .WithMany(c => c.Users);
 
 

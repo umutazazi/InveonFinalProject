@@ -15,6 +15,11 @@ namespace Inveon.Core.Models
         public string Description { get; set; }
         public decimal Price { get; set; }
         public string Category { get; set; }
+
+        public string ImageUrl { get; set; }
+        public int InstructorId { get; set; }
+   
+        public AppUser Instructor { get; set; }
         public ICollection<AppUser> Users { get; set; }
         public ICollection<Order> Orders { get; set; }
 

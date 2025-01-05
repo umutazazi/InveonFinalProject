@@ -127,6 +127,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Inveon.API.Controllers.CourseController",
+    "Method": "GetMyCourses",
+    "RelativePath": "api/Course/{userId}/my-courses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Inveon.API.Controllers.OrderController",
     "Method": "GetAll",
     "RelativePath": "api/Order",

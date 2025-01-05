@@ -12,8 +12,8 @@ namespace Inveon.Core.Modelss
         public int Id { get; set; }
         public int UserId { get; set; } = default!;
         public AppUser AppUser { get; set; } = default!;
-        public int CourseId { get; set; } = default!;
-        public Course Course { get; set; } = default!;
+        public int? CourseId { get; set; } 
+        public Course? Course { get; set; } 
         public Payment Payment { get; set; }
      
 

@@ -11,6 +11,13 @@ namespace Inveon.Core.DTOs.Course
         string Name,
         string Description,
         decimal Price,
-        string Category);
+        string Category,
+        string ImageUrl,
+        int InstructorId,
+        string InstructorName
+
+  
+        );
+
 
 }

@@ -20,7 +20,9 @@ namespace Inveon.Repository.Configurations.Seed
                     Description =
                         "Learn web development from scratch. This comprehensive course covers HTML, CSS, JavaScript, React, Node.js, and more. Perfect for beginners who want to become full-stack developers.",
                     Price = 199.99M,
-                    Category = "Web Development"
+                    Category = "Web Development",
+                    ImageUrl = "https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course",
+                    InstructorId = 2
                 },
                 new Course
                 {
@@ -29,7 +31,9 @@ namespace Inveon.Repository.Configurations.Seed
                     Description =
                         "Master Python programming with this comprehensive course. Covers basic to advanced concepts including data structures, algorithms, OOP, and practical projects. Ideal for both beginners and intermediate programmers.",
                     Price = 149.99M,
-                    Category = "Programming"
+                    Category = "Programming",
+                    ImageUrl = "https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course",
+                    InstructorId = 2
                 },
                 new Course
                 {
@@ -38,7 +42,9 @@ namespace Inveon.Repository.Configurations.Seed
                     Description =
                         "Build cross-platform mobile applications using Flutter and Dart. Learn to create beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.",
                     Price = 179.99M,
-                    Category = "Mobile Development"
+                    Category = "Mobile Development",
+                    ImageUrl = "https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course",
+                    InstructorId = 2
                 },
                 new Course
                 {
@@ -47,7 +53,9 @@ namespace Inveon.Repository.Configurations.Seed
                     Description =
                         "Comprehensive course on data science and machine learning using Python. Learn data analysis, visualization, statistical modeling, and implement various machine learning algorithms through hands-on projects.",
                     Price = 299.99M,
-                    Category = "Data Science"
+                    Category = "Data Science",
+                    ImageUrl = "https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course",
+                    InstructorId = 2
                 },
                 new Course
                 {
@@ -56,7 +64,9 @@ namespace Inveon.Repository.Configurations.Seed
                     Description =
                         "Master modern DevOps practices including CI/CD, container orchestration, cloud services, and infrastructure as code. Learn tools like Docker, Kubernetes, Jenkins, and AWS/Azure.",
                     Price = 249.99M,
-                    Category = "DevOps"
+                    Category = "DevOps",
+                    ImageUrl = "https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course",
+                    InstructorId = 2
                 }
             );
 

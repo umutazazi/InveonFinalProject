@@ -55,22 +55,6 @@ namespace Inveon.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Courses",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
-                    Category = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Courses", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UserRefreshTokens",
                 columns: table => new
                 {
@@ -192,15 +176,39 @@ namespace Inveon.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Courses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    InstructorId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Courses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Courses_AspNetUsers_InstructorId",
+                        column: x => x.InstructorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AppUserCourse",
                 columns: table => new
                 {
-                    CoursesId = table.Column<int>(type: "int", nullable: false),
+                    EnrolledCoursesId = table.Column<int>(type: "int", nullable: false),
                     UsersId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AppUserCourse", x => new { x.CoursesId, x.UsersId });
+                    table.PrimaryKey("PK_AppUserCourse", x => new { x.EnrolledCoursesId, x.UsersId });
                     table.ForeignKey(
                         name: "FK_AppUserCourse_AspNetUsers_UsersId",
                         column: x => x.UsersId,
@@ -208,8 +216,8 @@ namespace Inveon.Repository.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AppUserCourse_Courses_CoursesId",
-                        column: x => x.CoursesId,
+                        name: "FK_AppUserCourse_Courses_EnrolledCoursesId",
+                        column: x => x.EnrolledCoursesId,
                         principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -222,7 +230,7 @@ namespace Inveon.Repository.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    CourseId = table.Column<int>(type: "int", nullable: false),
+                    CourseId = table.Column<int>(type: "int", nullable: true),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -239,7 +247,7 @@ namespace Inveon.Repository.Migrations
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -276,9 +284,9 @@ namespace Inveon.Repository.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "f160c943-31a4-4f84-b72f-9b2f30eaeeed", "Admin", "ADMIN" },
-                    { 2, "799c2cbd-90bf-44a9-bad5-17631aa4c2af", "User", "USER" },
-                    { 3, "cf40d062-194e-4953-bb10-ab68341d4768", "Instructor", "INSTRUCTOR" }
+                    { 1, "0df6a343-5a44-4718-8f96-cb165421b30f", "Admin", "ADMIN" },
+                    { 2, "3b3d237d-556f-468e-bc40-308709e8e147", "User", "USER" },
+                    { 3, "2aa357fc-42cd-44dc-8b45-014b5d64a0db", "Instructor", "INSTRUCTOR" }
                 });
 
             migrationBuilder.InsertData(
@@ -286,21 +294,9 @@ namespace Inveon.Repository.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "7e4dafea-0513-4947-86d3-b55339e25e8d", "admin@example.com", true, false, null, "ADMIN@EXAMPLE.COM", "ADMIN@EXAMPLE.COM", "AQAAAAIAAYagAAAAEP9ViQXLYPt0mtmG4RDXtMyByXz3sGkeLeGV4EaZaVSyHgn2gDq0ERI2SGDBgug3jQ==", "+1234567890", true, "6e841190-059e-4f4a-bd7b-6eb1344d4376", false, "adminexample" },
-                    { 2, 0, "98c44f02-db97-4e3d-85ad-c283cbabb5f6", "instructor@example.com", true, false, null, "INSTRUCTOR@EXAMPLE.COM", "INSTRUCTOR@EXAMPLE.COM", "AQAAAAIAAYagAAAAENQ1USx3eqt3zwzPDouB+CtiH48ewtWS5tTMfScUyN49b3D5W1GZko7L8ldLvAVqQg==", "+1234567891", true, "88323ba9-2a90-4d3d-adc1-8ae58a3953c6", false, "instructorexample" },
-                    { 3, 0, "cc5dc33d-1a80-47ae-9ba0-b00b6a310bc8", "user@example.com", true, false, null, "USER@EXAMPLE.COM", "USER@EXAMPLE.COM", "AQAAAAIAAYagAAAAEOKEaY4iSAwGBhOHVkhedZE665DwIAXUVsOuULRs2+WvL0SxhA+AvGvWGGA5UqFfdw==", "+1234567892", true, "5a39804a-fa69-4dae-b7dd-cb7113eb0c06", false, "userexample" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Courses",
-                columns: new[] { "Id", "Category", "Description", "Name", "Price" },
-                values: new object[,]
-                {
-                    { 1, "Web Development", "Learn web development from scratch. This comprehensive course covers HTML, CSS, JavaScript, React, Node.js, and more. Perfect for beginners who want to become full-stack developers.", "Complete Web Development Bootcamp", 199.99m },
-                    { 2, "Programming", "Master Python programming with this comprehensive course. Covers basic to advanced concepts including data structures, algorithms, OOP, and practical projects. Ideal for both beginners and intermediate programmers.", "Python Programming Masterclass", 149.99m },
-                    { 3, "Mobile Development", "Build cross-platform mobile applications using Flutter and Dart. Learn to create beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.", "Mobile App Development with Flutter", 179.99m },
-                    { 4, "Data Science", "Comprehensive course on data science and machine learning using Python. Learn data analysis, visualization, statistical modeling, and implement various machine learning algorithms through hands-on projects.", "Data Science and Machine Learning", 299.99m },
-                    { 5, "DevOps", "Master modern DevOps practices including CI/CD, container orchestration, cloud services, and infrastructure as code. Learn tools like Docker, Kubernetes, Jenkins, and AWS/Azure.", "DevOps Engineering Professional", 249.99m }
+                    { 1, 0, "fb22f1b7-58c5-423c-9df4-81fbe37cabfa", "admin@example.com", true, false, null, "ADMIN@EXAMPLE.COM", "ADMIN@EXAMPLE.COM", "AQAAAAIAAYagAAAAEBNkFvNNuVr3tFJYP++qSCMK+/s/Lwem5/jCXIIwOpkBBfLpMsVtAnx4xhljMsBhLw==", "+1234567890", true, "61a043ce-4612-4a3a-be3b-723bb7177b48", false, "adminexample" },
+                    { 2, 0, "b591527f-bf1a-40b9-b85d-a676c19702d0", "instructor@example.com", true, false, null, "INSTRUCTOR@EXAMPLE.COM", "INSTRUCTOR@EXAMPLE.COM", "AQAAAAIAAYagAAAAED/45OvnCeuQ8ZRSNGR3SJqUagV6xLrerz7417sOx0IBzutyyEJIaPu0TmReh1N/Qw==", "+1234567891", true, "3eef17eb-bc24-44de-8826-e312528b0d28", false, "instructorexample" },
+                    { 3, 0, "d13c9783-0a84-4ade-af23-e7fa4e527ae6", "user@example.com", true, false, null, "USER@EXAMPLE.COM", "USER@EXAMPLE.COM", "AQAAAAIAAYagAAAAEOvxUAMGsGt1gQV7cvO2STheTpe6AsjhjSXVPsm0vCpS7kTjkxQGatTcOzaKUIY7RA==", "+1234567892", true, "eab66a86-0044-42b3-81fc-6f84061a1e0e", false, "userexample" }
                 });
 
             migrationBuilder.InsertData(
@@ -311,6 +307,18 @@ namespace Inveon.Repository.Migrations
                     { 1, 1 },
                     { 3, 2 },
                     { 2, 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Courses",
+                columns: new[] { "Id", "Category", "Description", "ImageUrl", "InstructorId", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 1, "Web Development", "Learn web development from scratch. This comprehensive course covers HTML, CSS, JavaScript, React, Node.js, and more. Perfect for beginners who want to become full-stack developers.", "https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course", 2, "Complete Web Development Bootcamp", 199.99m },
+                    { 2, "Programming", "Master Python programming with this comprehensive course. Covers basic to advanced concepts including data structures, algorithms, OOP, and practical projects. Ideal for both beginners and intermediate programmers.", "https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course", 2, "Python Programming Masterclass", 149.99m },
+                    { 3, "Mobile Development", "Build cross-platform mobile applications using Flutter and Dart. Learn to create beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.", "https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course", 2, "Mobile App Development with Flutter", 179.99m },
+                    { 4, "Data Science", "Comprehensive course on data science and machine learning using Python. Learn data analysis, visualization, statistical modeling, and implement various machine learning algorithms through hands-on projects.", "https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course", 2, "Data Science and Machine Learning", 299.99m },
+                    { 5, "DevOps", "Master modern DevOps practices including CI/CD, container orchestration, cloud services, and infrastructure as code. Learn tools like Docker, Kubernetes, Jenkins, and AWS/Azure.", "https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course", 2, "DevOps Engineering Professional", 249.99m }
                 });
 
             migrationBuilder.CreateIndex(
@@ -356,6 +364,11 @@ namespace Inveon.Repository.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Courses_InstructorId",
+                table: "Courses",
+                column: "InstructorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_CourseId",
@@ -413,10 +426,10 @@ namespace Inveon.Repository.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Courses");
 
             migrationBuilder.DropTable(
-                name: "Courses");
+                name: "AspNetUsers");
         }
     }
 }

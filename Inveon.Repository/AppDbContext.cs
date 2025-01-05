@@ -31,12 +31,7 @@ namespace Inveon.Repository
             builder.SeedRoles();
             builder.SeedUserRoles();
             builder.SeedCourses();
-          
-
-
-
-
-
+        
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

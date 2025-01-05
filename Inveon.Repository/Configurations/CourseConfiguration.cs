@@ -35,6 +35,11 @@ namespace Inveon.Repository.Configurations
             builder.HasMany(c => c.Orders)
                 .WithOne(o => o.Course)
                 .HasForeignKey(o => o.CourseId)
+                .OnDelete(DeleteBehavior.SetNull); // Changed to Restrict
+
+            builder.HasOne(c => c.Instructor)
+                .WithMany(i => i.Courses)
+                .HasForeignKey(c => c.InstructorId)
                 .OnDelete(DeleteBehavior.Restrict); // Changed to Restrict
 
         }

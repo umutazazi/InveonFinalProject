@@ -11,11 +11,8 @@ namespace Inveon.Core.Models
     public class AppUser : IdentityUser<int>
     {
         public ICollection<Order>? Orders { get; set; }
-        public ICollection<Course>? Courses { get; set; }
+        public ICollection<Course>? EnrolledCourses { get; set; }
         public ICollection<Payment>? Payments { get; set; }
-
-
-    
-
-}
+        public ICollection<Course>? Courses { get; set; } // Add this line
+    }
 }
