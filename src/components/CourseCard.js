@@ -7,7 +7,7 @@ export default function CourseCard({ course }) {
       <div className="card h-100 shadow-sm">
         <div className="card-body">
           <img
-            src={"https://dummyimage.com/600x400/a1a1a1/ffffff&text=Course"}
+            src={course.imageUrl}
             alt={course.name}
             className="img-fluid mb-3"
           />
