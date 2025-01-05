@@ -1,1 +1,0 @@
-const courseInCart = cart.find((item) => item.id === id);

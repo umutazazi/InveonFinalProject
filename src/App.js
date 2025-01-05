@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import UserProfile from "./pages/UserProfile";
 import Cart from "./pages/Cart";
 import Payment from "./pages/Payment";
+import Instructor from "./pages/Instructor";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/profile" element={<UserProfile />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/payment" element={<Payment />} />
+      <Route path="/create-course" element={<Instructor />} />
     </Routes>
   );
 }
