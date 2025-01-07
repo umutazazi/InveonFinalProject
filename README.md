@@ -161,6 +161,19 @@ Frontend Kullanımı
 
   - JWT Token: API uç noktalarını kullanırken, yetkilendirme gerektiren işlemler için Authorization başlığında Bearer <token> formatında bir token sağlamalısınız.
   - Refresh Token Mekanizması: Giriş yaptıktan sonra oturum süresi dolduğunda yeniden giriş yapmaya gerek kalmadan token yenileyebilirsiniz.
+  - Örnek işlemler için seed data oluşturuldu, role bazlı yetkilendirmeyi test etmek için iki farklı kullanıcı ile giriş yapılabilir:
+```
+User(Normal):
+ Email = "user@example.com",
+ Password = "User123!",
+
+User(Instructor):
+Email = "instructor@example.com",
+Password = "Instructor123!"
+```
+
+
+
 
 
 
