@@ -1,4 +1,4 @@
-# InveonFinalProject
+# Inveon E-Learning Platform 
 
 ## Ekran Görüntüleri
 
