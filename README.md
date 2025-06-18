@@ -1,5 +1,11 @@
 # InveonFinalProject
-# Proje Açıklaması
+
+## Ekran Görüntüleri
+![Ekran görüntüsü 2025-06-18 163441](https://github.com/user-attachments/assets/db658894-21c1-49a2-b0bb-f9b5a49c1c2b)
+![Ekran görüntüsü 2025-06-18 163544](https://github.com/user-attachments/assets/3917b8f8-f4a5-4e43-a40b-5612c63a4488)
+![Ekran görüntüsü 2025-06-18 163502](https://github.com/user-attachments/assets/f5fde0dd-9cee-48d6-97dd-2773128fcb07)
+
+## Proje Açıklaması
 
 Bu proje, **JWT Token Authentication** ve **Refresh Token** ile güvenli bir üyelik sistemi sunan bir **.NET 9 Mini Kurs E-Ticaret Sitesi** uygulamasıdır. Uygulama, **N Layered Architecture** prensiplerini takip ederek modern, modüler ve ölçeklenebilir bir yapıda geliştirilmiştir. 
 
