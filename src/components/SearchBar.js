@@ -2,11 +2,16 @@ import React from "react";
 
 export default function SearchBar({ setSearchTerm }) {
   return (
-    <input
-      type="text"
-      placeholder="Search courses..."
-      className="form-control my-3"
-      onChange={(e) => setSearchTerm(e.target.value)}
-    />
+    <div className="search-container mb-4">
+      <div className="position-relative">
+        <i className="fas fa-search search-icon"></i>
+        <input
+          type="text"
+          placeholder="Search for courses..."
+          className="search-input"
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+    </div>
   );
 }

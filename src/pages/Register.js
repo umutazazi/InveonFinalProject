@@ -51,76 +51,99 @@ export default function Register() {
       alertify.error("An error occurred");
     }
   };
-
   return (
-    <div
-      className="d-flex justify-content-center align-items-center"
-      style={{ height: "100vh" }}
-    >
-      <div className="card shadow-sm">
-        <div className="card-body">
-          <h1 className="text-center">Register</h1>
-          <form onSubmit={handleRegister}>
-            <div className="mb-3">
-              <label htmlFor="username" className="form-label">
-                Username
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="username"
-                name="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">
-                Email
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">
-                Password
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="confirmPassword" className="form-label">
-                Confirm Password
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="confirmPassword"
-                name="confirmPassword"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
-            <button
-              type="submit"
-              className="btn btn-primary"
-              onClick={handleRegister}
+    <div className="min-vh-100 d-flex align-items-center justify-content-center py-4">
+      <div className="form-container fade-in-up">
+        <div className="text-center mb-4">
+          <h1 className="h2 fw-bold text-dark">Create Account</h1>
+          <p className="text-muted">Join thousands of learners</p>
+        </div>
+
+        <form onSubmit={handleRegister}>
+          <div className="mb-3">
+            <label htmlFor="username" className="form-label">
+              <i className="fas fa-user me-2"></i>
+              Username
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="username"
+              name="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Choose a username"
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              <i className="fas fa-envelope me-2"></i>
+              Email Address
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">
+              <i className="fas fa-lock me-2"></i>
+              Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Create a password"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="confirmPassword" className="form-label">
+              <i className="fas fa-lock me-2"></i>
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirm your password"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="btn btn-primary w-100"
+            onClick={handleRegister}
+          >
+            <i className="fas fa-user-plus me-2"></i>
+            Create Account
+          </button>
+        </form>
+
+        <div className="text-center mt-4">
+          <p className="text-muted">
+            Already have an account?{" "}
+            <a
+              href="/login"
+              className="text-primary text-decoration-none fw-semibold"
             >
-              Register
-            </button>
-          </form>
+              Sign in
+            </a>
+          </p>
         </div>
       </div>
     </div>

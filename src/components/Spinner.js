@@ -3,13 +3,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const Spinner = () => {
   return (
-    <div
-      className="d-flex justify-content-center align-items-center"
-      style={{ height: "100vh" }}
-    >
+    <div className="loading-container">
       <div className="spinner-border text-primary" role="status">
         <span className="visually-hidden">Loading...</span>
       </div>
+      <p className="loading-text">Loading courses...</p>
     </div>
   );
 };

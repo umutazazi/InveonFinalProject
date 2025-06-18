@@ -53,56 +53,68 @@ export default function Login() {
   const handleRegister = () => {
     navigate("/register");
   };
-
   return (
-    <div
-      className="d-flex justify-content-center align-items-center"
-      style={{ height: "100vh" }}
-    >
-      <div className="card shadow-sm">
-        <div className="card-body">
-          <h1 className="text-center">Login</h1>
-          <form onSubmit={handleLogin}>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">
-                Email
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">
-                Password
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-          </form>
-          <div className="row m-3">
+    <div className="min-vh-100 d-flex align-items-center justify-content-center py-4">
+      <div className="form-container fade-in-up">
+        <div className="text-center mb-4">
+          <h1 className="h2 fw-bold text-dark">Welcome Back</h1>
+          <p className="text-muted">Sign in to your account</p>
+        </div>
+
+        <form onSubmit={handleLogin}>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              <i className="fas fa-envelope me-2"></i>
+              Email Address
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="password" className="form-label">
+              <i className="fas fa-lock me-2"></i>
+              Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="btn btn-primary w-100 mb-3"
+            onClick={handleLogin}
+          >
+            <i className="fas fa-sign-in-alt me-2"></i>
+            Sign In
+          </button>
+
+          <div className="text-center">
+            <p className="text-muted mb-3">Don't have an account?</p>
             <button
-              type="submit"
-              className="btn btn-primary"
-              onClick={handleLogin}
+              type="button"
+              className="btn btn-outline-primary w-100"
+              onClick={handleRegister}
             >
-              Login
-            </button>
-            <button className="btn btn-secondary mt-3" onClick={handleRegister}>
-              Register
+              <i className="fas fa-user-plus me-2"></i>
+              Create Account
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

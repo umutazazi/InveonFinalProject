@@ -8,7 +8,7 @@ import Spinner from "../components/Spinner";
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [coursesPerPage] = useState(5); // Number of courses per page
+  const [coursesPerPage] = useState(6); // Number of courses per page
 
   const { courses } = useContext(CourseContext);
 
@@ -28,22 +28,49 @@ export default function Home() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="container">
-      <SearchBar setSearchTerm={setSearchTerm} />
+    <div className="container py-4">
+      {/* Hero Section */}
+      <div className="text-center mb-5">
+        <h1 className="display-4 fw-bold text-dark mb-3">
+          Discover Amazing Courses
+        </h1>
+        <p className="lead text-muted mb-4">
+          Learn from industry experts and advance your skills
+        </p>
+        <SearchBar setSearchTerm={setSearchTerm} />
+      </div>
+
       {courses.length === 0 ? (
         <Spinner />
       ) : (
         <>
-          <div className="row">
-            {currentCourses.map((course) => (
-              <CourseCard course={course} key={course.id} />
-            ))}
-          </div>
-          <Pagination
-            coursesPerPage={coursesPerPage}
-            totalCourses={filteredCourses.length}
-            paginate={paginate}
-          />
+          {filteredCourses.length === 0 ? (
+            <div className="empty-state">
+              <div className="empty-state-icon">
+                <i className="fas fa-search"></i>
+              </div>
+              <h3>No courses found</h3>
+              <p>
+                Try adjusting your search terms or browse all available courses.
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="row">
+                {currentCourses.map((course) => (
+                  <CourseCard course={course} key={course.id} />
+                ))}
+              </div>{" "}
+              {filteredCourses.length > coursesPerPage && (
+                <Pagination
+                  coursesPerPage={coursesPerPage}
+                  totalCourses={filteredCourses.length}
+                  paginate={paginate}
+                  currentPage={currentPage}
+                />
+              )}
+            </>
+          )}
         </>
       )}
     </div>

@@ -74,35 +74,113 @@ export default function CourseDetails() {
       }
     }
   };
-
   if (!course) {
     return <Spinner />;
   }
 
   return (
-    <div className="container mt-4">
-      <div className="row">
-        <div className="col-md-6">
-          <img
-            src={
-              "https://www.dummyimage.co.uk/600x400/cbcbcb/959595/Dummy%20Image/40"
-            }
-            alt={course.title}
-            className="img-fluid"
-          ></img>
+    <div className="container py-4">
+      {/* Course Hero Section */}
+      <div className="course-hero fade-in-up">
+        <div className="row align-items-center">
+          <div className="col-md-8">
+            <div className="category-badge">{course.category}</div>
+            <h1>{course.name}</h1>
+            <p className="lead mb-4">{course.description}</p>
+            <div className="d-flex align-items-center gap-4">
+              <span className="h2 mb-0 fw-bold">{course.price}₺</span>
+              <button
+                className="btn btn-success btn-lg"
+                onClick={handlePurchase}
+                disabled={isInCart || isPurchased}
+              >
+                {isPurchased ? (
+                  <>
+                    <i className="fas fa-check me-2"></i>
+                    Purchased
+                  </>
+                ) : isInCart ? (
+                  <>
+                    <i className="fas fa-shopping-cart me-2"></i>
+                    In Cart
+                  </>
+                ) : (
+                  <>
+                    <i className="fas fa-plus me-2"></i>
+                    Add to Cart
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <img
+              src={
+                course.imageUrl ||
+                "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+              }
+              alt={course.name}
+              className="img-fluid rounded shadow"
+            />
+          </div>
         </div>
-        <div className="col-md-6">
-          <h2>{course.name}</h2>
-          <h4>Category: {course.category} </h4>
-          <p>{course.description}</p>
-          <h4>{course.price}₺</h4>
-          <button
-            className="btn btn-success"
-            onClick={handlePurchase}
-            disabled={isInCart || isPurchased}
-          >
-            {isPurchased ? "Purchased" : isInCart ? "In Cart" : "Add to Cart"}
-          </button>
+      </div>
+
+      {/* Course Details Section */}
+      <div className="row mt-5">
+        <div className="col-md-8">
+          <div className="card course-card">
+            <div className="card-body">
+              <h3 className="mb-4">Course Description</h3>
+              <p className="text-muted">{course.description}</p>
+
+              <h4 className="mt-4 mb-3">What you'll learn</h4>
+              <ul className="list-unstyled">
+                <li className="mb-2">
+                  <i className="fas fa-check text-success me-2"></i>
+                  Master the fundamentals and advanced concepts
+                </li>
+                <li className="mb-2">
+                  <i className="fas fa-check text-success me-2"></i>
+                  Build real-world projects
+                </li>
+                <li className="mb-2">
+                  <i className="fas fa-check text-success me-2"></i>
+                  Get hands-on experience
+                </li>
+                <li className="mb-2">
+                  <i className="fas fa-check text-success me-2"></i>
+                  Receive completion certificate
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-md-4">
+          <div className="card course-card">
+            <div className="card-body">
+              <h4 className="mb-3">Course Info</h4>
+              <div className="mb-3">
+                <strong>Category:</strong>
+                <span className="ms-2 badge bg-primary">{course.category}</span>
+              </div>
+              <div className="mb-3">
+                <strong>Price:</strong>
+                <span className="ms-2 text-success fw-bold">
+                  {course.price}₺
+                </span>
+              </div>
+              <div className="mb-3">
+                <strong>Duration:</strong>
+                <span className="ms-2">8 weeks</span>
+              </div>
+              <div className="mb-3">
+                <strong>Level:</strong>
+                <span className="ms-2">Beginner to Advanced</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

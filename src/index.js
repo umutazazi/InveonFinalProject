@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "alertifyjs/build/css/alertify.min.css";
+import "./styles/custom.css";
 import NavBar from "./components/NavBar";
 import { AuthProvider } from "./context/authContext";
 import { CourseProvider } from "./context/courseContext";
