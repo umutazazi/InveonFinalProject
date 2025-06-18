@@ -1,9 +1,9 @@
 # InveonFinalProject
 
 ## Ekran Görüntüleri
-![Ekran görüntüsü 2025-06-18 163441](https://github.com/user-attachments/assets/db658894-21c1-49a2-b0bb-f9b5a49c1c2b)
-![Ekran görüntüsü 2025-06-18 163544](https://github.com/user-attachments/assets/3917b8f8-f4a5-4e43-a40b-5612c63a4488)
-![Ekran görüntüsü 2025-06-18 163502](https://github.com/user-attachments/assets/f5fde0dd-9cee-48d6-97dd-2773128fcb07)
+
+![Ekran görüntüsü 2025-06-18 185828](https://github.com/user-attachments/assets/6512aaa6-9c27-4715-9adc-05613abea9e6)
+![Ekran görüntüsü 2025-06-18 185846](https://github.com/user-attachments/assets/515e690c-cf99-4f37-9f53-fbe81c43b5b6)
 
 ## Proje Açıklaması
 
